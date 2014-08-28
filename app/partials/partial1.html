@@ -1,1 +1,11 @@
 <p>This is the partial for view 1.</p>
+
+<p>Some text before the form and directive</p>
+<form ng-submit="getData()">
+    Radius: <input value="75" ng-model="radius"><br/>
+        <input type="submit" value="Draw">
+</form>
+
+<dyn-circle val="data"></dyn-circle>
+
+<p>Some additional text after the form and directive</p>
