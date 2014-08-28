@@ -2,11 +2,10 @@
 """
     update_json.py -- Update the json files required by the expert finder
 
-    Version 0.0 MC 2014-08-28
-    --  Just getting started
+    Version 0.1 MC 2014-08-28
+    --  Works as expected for concept list
 
     To do
-    --  Update concept.json, used to select a concept
     --  Update author.json, used to select an author
     --  The rest might come from dynamic queries to VIVO
 """
@@ -14,7 +13,7 @@
 __author__ = "Michael Conlon"
 __copyright__ = "Copyright 2014, University of Florida"
 __license__ = "BSD 3-Clause license"
-__version__ = "0.0"
+__version__ = "0.1"
 
 
 import json
