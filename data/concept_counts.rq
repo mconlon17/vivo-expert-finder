@@ -1,0 +1,11 @@
+#
+# Frequency table of concepts
+#
+SELECT ?concept_uri ?label (COUNT (DISTINCT ?uri) AS ?count)
+WHERE {
+  ?uri a vivo:InformationResource .
+  ?uri vivo:hasSubjectArea ?concept .
+  ?concept_uri rdfs:label ?label .
+}
+GROUP BY ?concept_uri
+ORDER BY DESC(?count)
