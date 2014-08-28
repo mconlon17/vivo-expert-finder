@@ -1,9 +1,18 @@
 'use strict';
 
-/* Services */
+//  Value service provides the current version of the app
+//  Factory service provides a query method that will get data for individual
+//  concepts, or for all concepts.
 
+angular.module('myApp.services', ['ngResource'])
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('myApp.services', []).
-  value('version', '0.1');
+    .factory('Concept', ['$resource',
+        function($resource){
+            return $resource('../data/:conceptId.json', {}, {
+            query: {method:'GET', params:{conceptId:'concepts'}, isArray:true}
+        });}
+    ])
+
+    .value('version', '0.1')
+
+;

@@ -40,7 +40,13 @@ GROUP BY ?concept_uri
 ORDER BY DESC(?count)
     """
     result = vivo_sparql_query(query, debug=True)
-    concept_data = result['results']['bindings']
+    result_data = result['results']['bindings']
+    concept_data = []
+    for result_row in result_data:
+        concept_row = {"uri": result_row["concept_uri"]["value"],
+                       "count": int(result_row["count"]["value"]),
+                       "label": result_row["label"]["value"]}
+        concept_data.append(concept_row)
     concept_json_file = open("concepts.json", "w")
     print >>concept_json_file, json.dumps(concept_data, indent=4)
     concept_json_file.close()

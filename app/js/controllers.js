@@ -18,11 +18,13 @@ angular.module('myApp.controllers', [])
 	$scope.getData();
 
 
-
 }])
 
-.controller('MyCtrl2', ['$scope', function($scope) {
-
-}])
+.controller('MyCtrl2', ['$scope', 'Concept',
+    function($scope, Concept) {
+        $scope.concepts = Concept.query();
+        $scope.orderProp = '-count';
+        alert($scope.orderProp+" read and ready!");
+    }])
 
 ;

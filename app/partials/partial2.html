@@ -1,5 +1,25 @@
+<div class="concept-list">
 <p>This is the partial for view 2.</p>
 <p>
-  Showing of 'interpolate' filter:
   {{ 'Current version is v%VERSION%.' | interpolate }}
 </p>
+
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+        <option value="-count">Count Down</option>
+        <option value="count">Count Up</option>
+        <option value="label">Alphabetical (A-Z)</option>
+        <option value="-label">Alphabetical (Z-A)</option>
+
+      </select>
+
+      <ul class="concepts">
+        <li ng-repeat="concept in concepts | filter:query | orderBy:orderProp">
+          <a href="#/data/{{concept.uri}}">{{concept.label}}</a>
+            {{concept.count}}
+          <a href="{{concept.uri}}">In VIVO</a>
+        </li>
+      </ul>
+
+    </div>
