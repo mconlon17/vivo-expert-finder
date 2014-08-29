@@ -24,7 +24,7 @@ from datetime import datetime
 
 def update_concept_json():
     """
-    Rewrite the concept_json, is any with current data from VIVO
+    Rewrite the concept_json, with current data from VIVO
     """
     query = """
 #
