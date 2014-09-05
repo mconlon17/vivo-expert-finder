@@ -1,5 +1,9 @@
 <div class="concept-list">
-<p>This is the partial for view 2.</p>
+<h1>Concepts</h1>
+    <p>Search for a concept in VIVO.  As you type, the list of concepts
+    matching your search will change.  Use the "Sort By" selector to sort
+    alphabetically, or by the count of the number of papers tagged with
+    the concept in VIVO.</p>
 <p>
   {{ 'Current version is v%VERSION%.' | interpolate }}
 </p>
@@ -16,9 +20,10 @@
 
       <ul class="concepts">
         <li ng-repeat="concept in concepts | filter:query | orderBy:orderProp">
-          <a href="#/data/{{concept.uri}}">{{concept.label}}</a>
-            {{concept.count}}
-          <a href="{{concept.uri}}">In VIVO</a>
+          <a href="#/data/{{concept.uri}}">{{concept.label}}</a>:&nbsp;
+          <a href="#/papers/{{concept.uri}}">{{concept.count}} papers</a>,&nbsp;
+          <a href="#/authors/{{concept.uri}}">{{concept.authors}} authors</a>
+          <a href="{{concept.uri}}" target="_blank">in VIVO</a>
         </li>
       </ul>
 
