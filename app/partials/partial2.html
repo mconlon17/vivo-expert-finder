@@ -23,8 +23,8 @@
       <ul class="concepts">
         <li ng-repeat="concept in concepts | filter:query | orderBy:orderProp">
           <a href="#/data/{{concept.uri}}">{{concept.label}}</a>:&nbsp;
-                      <a href="#/authors/{{concept.uri}}">{{concept.authors}} authors</a>, &nbsp;
-          <a href="#/papers/{{concept.uri}}">{{concept.pubs}} papers</a>
+          <a href="#/authors/{{concept.uri}}">{{concept.authors|unit:"author"}}</a>, &nbsp;
+          <a href="#/papers/{{concept.uri}}">{{concept.pubs|unit:"publication"}}</a>
 
         </li>
       </ul>
