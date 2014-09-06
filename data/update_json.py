@@ -27,24 +27,32 @@ def update_concept_json():
     Rewrite the concept_json, with current data from VIVO
     """
     query = """
-#
-# Frequency table of concepts
-#
-SELECT ?concept_uri (SAMPLE(DISTINCT ?clabel) AS ?label) (COUNT (DISTINCT ?uri) AS ?count)
-WHERE {
-  ?uri a vivo:InformationResource .
-  ?uri vivo:hasSubjectArea ?concept_uri .
-  ?concept_uri rdfs:label ?clabel .
-}
-GROUP BY ?concept_uri
-ORDER BY DESC(?count)
+    #
+    # Frequency table of concepts
+    #
+    SELECT ?concept_uri
+      (SAMPLE (DISTINCT ?clabel) AS ?label)
+      (COUNT (DISTINCT ?uri) AS ?pubs)
+      (COUNT (DISTINCT ?auth) AS ?authors)
+    WHERE {
+      ?concept_uri a skos:Concept .
+      ?uri a vivo:InformationResource .
+      ?uri vivo:informationResourceInAuthorship ?a .
+      ?a vivo:linkedAuthor ?auth .
+      ?auth a ufVivo:UFCurrentEntity .
+      ?uri vivo:hasSubjectArea ?concept_uri .
+      ?concept_uri rdfs:label ?clabel .
+    }
+    GROUP BY ?concept_uri
+    ORDER BY DESC(?count)
     """
     result = vivo_sparql_query(query, debug=True)
     result_data = result['results']['bindings']
     concept_data = []
     for result_row in result_data:
         concept_row = {"uri": result_row["concept_uri"]["value"],
-                       "count": int(result_row["count"]["value"]),
+                       "pubs": int(result_row["pubs"]["value"]),
+                       "authors": int(result_row["authors"]["value"]),
                        "label": result_row["label"]["value"]}
         concept_data.append(concept_row)
     concept_json_file = open("concepts.json", "w")

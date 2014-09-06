@@ -12,7 +12,7 @@ angular.module('myApp.controllers', [])
 
 	$scope.getData = function(){
 	    $scope.data = [{"cx":150,"cy":150,"r":$scope.radius,"color":"purple"}];
-	    alert("In controller radius = "+$scope.data[0].r);
+	//    alert("In controller radius = "+$scope.data[0].r);
 	};
 
 	$scope.getData();
@@ -23,8 +23,8 @@ angular.module('myApp.controllers', [])
 .controller('MyCtrl2', ['$scope', 'Concept',
     function($scope, Concept) {
         $scope.concepts = Concept.query();
-        $scope.orderProp = '-count';
-        alert($scope.orderProp+" read and ready!");
+        $scope.orderProp = '-authors';
+    //    alert($scope.orderProp+" read and ready!");
     }])
 
 ;

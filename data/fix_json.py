@@ -27,11 +27,12 @@ def fix_concept_json():
     """
     Rewrite the concept_json, is any with current data from VIVO
     """
-    result_data = json.load(open("concepts_vivo.json","r"))
+    result_data = json.load(open("concepts_vivo.json","r"))['results']['bindings']
     concept_data = []
     for result_row in result_data:
         concept_row = {"uri": result_row["concept_uri"]["value"],
-                       "count": int(result_row["count"]["value"]),
+                       "pubs": int(result_row["pubs"]["value"]),
+                       "authors": int(result_row["authors"]["value"]),
                        "label": result_row["label"]["value"]}
         concept_data.append(concept_row)
     concept_json_file = open("concepts.json", "w")

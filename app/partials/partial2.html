@@ -2,7 +2,8 @@
 <h1>Concepts</h1>
     <p>Search for a concept in VIVO.  As you type, the list of concepts
     matching your search will change.  Use the "Sort By" selector to sort
-    alphabetically, or by the count of the number of papers tagged with
+    by the number of UF authors who have published on the concept, alphabetically,
+    or by the count of the number of papers tagged with
     the concept in VIVO.</p>
 <p>
   {{ 'Current version is v%VERSION%.' | interpolate }}
@@ -11,19 +12,20 @@
       Search: <input ng-model="query">
       Sort by:
       <select ng-model="orderProp">
-        <option value="-count">Count Down</option>
-        <option value="count">Count Up</option>
+        <option value="-authors">Authors Hi-Lo</option>
+        <option value="authors">Authors Lo-Hi</option>
+        <option value="-pubs">Publications Hi-Lo</option>
+        <option value="pubs">Publications Lo-Hi</option>
         <option value="label">Alphabetical (A-Z)</option>
         <option value="-label">Alphabetical (Z-A)</option>
-
       </select>
 
       <ul class="concepts">
         <li ng-repeat="concept in concepts | filter:query | orderBy:orderProp">
           <a href="#/data/{{concept.uri}}">{{concept.label}}</a>:&nbsp;
-          <a href="#/papers/{{concept.uri}}">{{concept.count}} papers</a>,&nbsp;
-          <a href="#/authors/{{concept.uri}}">{{concept.authors}} authors</a>
-          <a href="{{concept.uri}}" target="_blank">in VIVO</a>
+                      <a href="#/authors/{{concept.uri}}">{{concept.authors}} authors</a>, &nbsp;
+          <a href="#/papers/{{concept.uri}}">{{concept.pubs}} papers</a>
+
         </li>
       </ul>
 

@@ -33,7 +33,7 @@ angular.module('myApp.directives', [])
 
 		scope.$watch('val', function (newVal, oldVal) {
 
-		    alert("In watch. Will transition circle. val radius is "+newVal[0].r+"viz"+viz);
+		//   alert("In watch. Will transition circle. val radius is "+newVal[0].r+"viz"+viz);
 
 			viz.transition()
 				.duration(750)
