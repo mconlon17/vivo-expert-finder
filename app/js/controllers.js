@@ -27,4 +27,9 @@ angular.module('myApp.controllers', [])
     //    alert($scope.orderProp+" read and ready!");
     }])
 
+.controller('MyCtrl3', ['$scope',
+    function($scope) {
+        $scope.page = "Help";
+    }])
+
 ;

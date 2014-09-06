@@ -16,5 +16,7 @@ angular.module('myApp', [
         controller: 'MyCtrl1'});
     $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html',
         controller: 'MyCtrl2'});
+    $routeProvider.when('/help', {templateUrl: 'partials/help.html',
+        controller: 'MyCtrl3'});
     $routeProvider.otherwise({redirectTo: '/view1'});
 }]);
